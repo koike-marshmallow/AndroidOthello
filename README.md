@@ -1,0 +1,2 @@
+# AndroidOthello
+Othelloやで
