@@ -117,6 +117,11 @@ public class OthelloBoard {
         }
     }
 
+    public boolean canPut(int x, int y, int color){
+        return color != NONE && inBound(x, y) && willFlip(x, y, color) &&
+                get(x, y) == NONE;
+    }
+
     public int put(int x, int y, int disc, boolean sAutoFlip){
         if( disc == NONE ) return SET_INVALIDDISC;
         if( inBound(x, y) ) {
@@ -144,6 +149,25 @@ public class OthelloBoard {
         return put(x, y, disc, autoFlip);
     }
 
+    public int countDiscs(int disc){
+        int cnt = 0;
+        for(int i=0; i<cells.length; i++){
+            for(int j=0; j<cells[i].length; j++){
+                if( cells[i][j] == disc ) cnt++;
+            }
+        }
+        return cnt;
+    }
+
     public int getRowCount(){ return cells.length; }
     public int getColumnCount(){ return (cells.length > 0 ? cells[0].length : 0); }
+
+    public String toString(){
+        String hash = super.toString();
+        int b = countDiscs(BLACK);
+        int w = countDiscs(WHITE);
+        int n = countDiscs(NONE);
+        return String.format("%s: (%dx%d)[N:%d, B:%d, W:%d]",
+                hash, getRowCount(), getColumnCount(), n, b, w);
+    }
 }
