@@ -3,10 +3,7 @@ package com.example.tkch.androidothello.core;
 /**
  * Created by taka on 2016/06/17.
  */
-public class OthelloBoard {
-    public static final int NONE = 0;
-    public static final int BLACK = 1;
-    public static final int WHITE = 2;
+public class OthelloBoard implements OthelloBoardDrawable {
 
     public static final int SET_SUCCESS = 100;
     public static final int SET_OUTOFBOUNDS = 101;
