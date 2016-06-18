@@ -94,5 +94,9 @@ public class MoveStack {
         push(type, new XYPoint(px, py), prevDisc, setDisc);
     }
 
+    public MoveRecord retrieve(){
+        return stack.get(stack.size() - 1);
+    }
 
+    //public MoveRecord[] groupRetrieve();
 }
