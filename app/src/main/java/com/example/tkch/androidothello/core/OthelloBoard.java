@@ -5,11 +5,11 @@ package com.example.tkch.androidothello.core;
  */
 public class OthelloBoard implements OthelloBoardDrawable {
 
-    public static final int SET_SUCCESS = 100;
-    public static final int SET_OUTOFBOUNDS = 101;
-    public static final int SET_NOFLIP = 102;
-    public static final int SET_INVALIDDISC = 103;
-    public static final int SET_RESERVED = 104;
+    public static final int PUT_SUCCESS = 100;
+    public static final int PUT_OUTOFBOUNDS = 101;
+    public static final int PUT_NOFLIP = 102;
+    public static final int PUT_INVALIDDISC = 103;
+    public static final int PUT_RESERVED = 104;
 
     public static int DEFAULT_ROWS = 8;
     public static int DEFAULT_COLUMNS = 8;
@@ -120,26 +120,26 @@ public class OthelloBoard implements OthelloBoardDrawable {
     }
 
     public int put(int x, int y, int disc, boolean sAutoFlip){
-        if( disc == NONE ) return SET_INVALIDDISC;
+        if( disc == NONE ) return PUT_INVALIDDISC;
         if( inBound(x, y) ) {
             int tmp = get(x, y);
             if( tmp == NONE ){
                 if( willFlip(x, y, disc) ){
                     cells[y][x] = disc;
                 }else{
-                    return SET_NOFLIP;
+                    return PUT_NOFLIP;
                 }
             }else{
-                return SET_RESERVED;
+                return PUT_RESERVED;
             }
         }else{
-            return SET_OUTOFBOUNDS;
+            return PUT_OUTOFBOUNDS;
         }
 
         if( sAutoFlip ){
             flip(x, y, disc);
         }
-        return SET_SUCCESS;
+        return PUT_SUCCESS;
     }
 
     public int put(int x, int y, int disc){
