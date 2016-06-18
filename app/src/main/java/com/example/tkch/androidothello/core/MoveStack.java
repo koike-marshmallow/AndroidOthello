@@ -75,7 +75,7 @@ public class MoveStack {
     public static final int OTHERS = MoveRecord.OTHERS;
 
     private List<MoveRecord> stack;
-    int gidCounter;
+    private int gidCounter;
 
     public MoveStack(){
         init();
@@ -94,9 +94,83 @@ public class MoveStack {
         push(type, new XYPoint(px, py), prevDisc, setDisc);
     }
 
-    public MoveRecord retrieve(){
-        return stack.get(stack.size() - 1);
+    public MoveRecord get(int idx){
+        if( idx >= 0 && idx < stack.size() ){
+            return stack.get(idx);
+        }
+        return null;
     }
 
-    //public MoveRecord[] groupRetrieve();
+    public MoveRecord[] getByGroupId(int gid){
+        int fi = -1;
+        int ti = stack.size();
+        for(int i=0; i<stack.size(); i++){
+            if( stack.get(i).getGroupId() == gid ){
+                if( fi < 0 ){
+                    fi = i;
+                }
+            }else{
+                if( fi >= 0 ){
+                    ti = i;
+                    break;
+                }
+            }
+        }
+
+        return (fi >= 0) ?
+                stack.subList(fi, ti).toArray(new MoveRecord[ti - fi]) :
+                new MoveRecord[0];
+    }
+
+    public MoveRecord[] getList(){
+        return stack.toArray(new MoveRecord[stack.size()]);
+    }
+
+    public int size(){
+        return stack.size();
+    }
+
+    public int grouping(){
+        gidCounter = size() > 0 ? stack.get(size()-1).getGroupId() + 1 : 0;
+        return gidCounter;
+    }
+
+    public MoveRecord pop(boolean remove){
+        MoveRecord rec = (stack.size() > 0) ? stack.get(stack.size()-1) : null;
+        if( rec != null && remove ){
+            stack.remove(stack.size() - 1);
+        }
+        return rec;
+    }
+
+    public MoveRecord[] groupPop(boolean remove){
+        List<MoveRecord> tmp = new ArrayList<MoveRecord>();
+        int targetGid = (stack.size() > 0) ? stack.get(stack.size()-1).getGroupId() : 0;
+        for(int i=stack.size()-1; i>=0; i--){
+            MoveRecord tmp2 = stack.get(i);
+            if( tmp2.getGroupId() == targetGid ){
+                tmp.add(0, tmp2);
+            }
+            if( remove ) {
+                stack.remove(i);
+            }
+        }
+        return tmp.toArray(new MoveRecord[tmp.size()]);
+    }
+
+    public MoveRecord pop(){
+        return pop(true);
+    }
+
+    public MoveRecord retrieve(){
+        return pop(false);
+    }
+
+    public MoveRecord[] groupPop(){
+        return groupPop(true);
+    }
+
+    public MoveRecord[] groupRetrieve(){
+        return groupPop(false);
+    }
 }
