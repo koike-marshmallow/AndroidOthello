@@ -94,5 +94,9 @@ public class OthelloGameManager {
         return ERROR;
     }
 
+    public OthelloBoard getBoard(){
+        return board;
+    }
+
 
 }
