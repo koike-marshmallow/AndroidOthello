@@ -22,13 +22,19 @@ public class OthelloGameManager {
     OthelloBoard board;
     boolean inBlackTurn;
 
+    public OthelloGameManager(OthelloBoard b0){
+        board = b0;
+        inBlackTurn = true;
+    }
+
 
     public void init(){
-        board = new OthelloBoard();
+        board.clear();
         board.set(3, 3, BLACK);
         board.set(4, 4, BLACK);
         board.set(3, 4, WHITE);
         board.set(4, 3, WHITE);
+        inBlackTurn = true;
     }
 
     public int nextDiscColor(){

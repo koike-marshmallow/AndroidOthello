@@ -32,10 +32,14 @@ public class OthelloBoard implements OthelloBoardDrawable {
         this(DEFAULT_ROWS, DEFAULT_COLUMNS);
     }
 
-    void init(int rows, int cols){
+    public void init(int rows, int cols){
         cells = new int[rows][cols];
-        for(int i=0; i<cells.length; i++){
-            for(int j=0; j<cells[i].length; j++){
+        clear();
+    }
+
+    public void clear(){
+        for(int i=0; i<cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
                 cells[i][j] = NONE;
             }
         }
