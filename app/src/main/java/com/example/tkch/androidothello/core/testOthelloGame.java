@@ -4,6 +4,8 @@ import com.example.tkch.androidothello.core.ai.OthelloAi;
 import com.example.tkch.androidothello.core.ai.OthelloRandomAi;
 import com.example.tkch.androidothello.core.drawer.OthelloBoardConsoleDrawer;
 
+import java.util.Scanner;
+
 /**
  * Created by taka on 2016/06/18.
  */
@@ -19,13 +21,26 @@ public class testOthelloGame {
         manager.init();
         drawer = new OthelloBoardConsoleDrawer(manager.getBoard());
         int rand = (int)(Math.random() * 2);
-        OthelloAi ai = new OthelloRandomAi(manager.getBoard());
-        blackAi = (rand % 2 == 0) ? ai : null;
-        whiteAi = (rand % 2 == 0) ? null : ai;
+        blackAi = (rand % 2 == 0) ?
+                new OthelloRandomAi(manager.getBoard(), OthelloDisc.BLACK) : null;
+        whiteAi = (rand % 2 == 0) ?
+                null : new OthelloRandomAi(manager.getBoard(), OthelloDisc.WHITE);
     }
 
-    void gameMain(){
-        
+    boolean gameMain(){
+        while( manager.isGameover() ){
+            OthelloAi ai = (manager.nextDiscColor() == OthelloDisc.BLACK) ?
+                    blackAi : whiteAi;
+
+            if( ai != null ){
+                int result = manager.put(ai);
+                System.out.println("return: " + result);
+            }else{
+                if( manager.canPutByColor(manager.nextDiscColor()) ){
+                    Scanner scanner = new Scanner(System.in);
+
+            }
+        }
     }
 
     public static void main(String[] args){
