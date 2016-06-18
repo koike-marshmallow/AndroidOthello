@@ -1,4 +1,6 @@
-package com.example.tkch.androidothello.core;
+package com.example.tkch.androidothello.core.ai;
+
+import com.example.tkch.androidothello.core.XYPoint;
 
 /**
  * Created by taka on 2016/06/18.

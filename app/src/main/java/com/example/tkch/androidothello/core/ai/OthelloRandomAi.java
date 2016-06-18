@@ -1,4 +1,7 @@
-package com.example.tkch.androidothello.core;
+package com.example.tkch.androidothello.core.ai;
+
+import com.example.tkch.androidothello.core.OthelloBoard;
+import com.example.tkch.androidothello.core.XYPoint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +9,7 @@ import java.util.List;
 /**
  * Created by taka on 2016/06/18.
  */
-public class OthelloRandomAi extends OthelloAi{
+public class OthelloRandomAi extends OthelloAi {
     static String TALK_INIT = "よろしくおねがいします";
     static String TALK_PASS = "パスです";
     static String TALK_CONTINUE = "置きました";

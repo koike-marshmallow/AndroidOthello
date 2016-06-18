@@ -1,4 +1,6 @@
-package com.example.tkch.androidothello.core;
+package com.example.tkch.androidothello.core.drawer;
+
+import com.example.tkch.androidothello.core.OthelloDisc;
 
 /**
  * Created by taka on 2016/06/18.

@@ -1,5 +1,7 @@
 package com.example.tkch.androidothello.core;
 
+import com.example.tkch.androidothello.core.drawer.OthelloBoardDrawable;
+
 /**
  * Created by taka on 2016/06/17.
  */
